@@ -1,2 +1,5 @@
 #!/bin/bash
-docker run --rm -it --network host bocon/gnmi-cli:latest $@ 
+if [$1 == t]; then
+docker run --rm -it --network host bocon/gnmi-cli:latest ${@:2} || docker run --rm -i bocon/yang-tools:latest oc-pb-decoder
+else
+docker run --rm -it --network host bocon/gnmi-cli:latest $@
